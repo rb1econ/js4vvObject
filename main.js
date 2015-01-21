@@ -7,68 +7,123 @@ var y=true;
 var victimsArrObj = [];
 var volunteerArrObj = [];
 
-while (x) {
-	var victims = prompt("how many victims would you like to enter?");
-	if (isNaN(victims))  { 
-		alert("please enter a number");
-	}
-	else {
-		x=false;
+var volunteerCount = [];
+var victimCount = [];
 
-		for (var i=victims; i>0; i--) {
-			var n = prompt("thanks, please enter the name of one of the victims.");
+
+while (x) {
+	var n = prompt("please enter a victim's name");
+	if (n!=null)  { 
+
 			var p = prompt("please enter this victim's phone number");
 			var s = prompt("please enter this victim's street name.");
-
 			var set = {name: n, phone: p, street: s};
-			
+				
 			victimsArrObj.push(set);
-		}
+
+			victimCount.push(n);
+			
+
+			if (!confirm("would you like to enter another victim?")) {
+
+				x=false;
+
+				}
 	}
+	else {x=false}
 }
 
-console.log(victimsArrObj);
-
-
-	 
-
 while (y) {
-	var volunteers = prompt("how many volunteers would you like to enter?");
-	if (isNaN(volunteers)) {
-		alert("please enter a number");
-	}
-	else {
-		y=false;
-
-		for (var i=volunteers; i>0; i--) {
-			var a = prompt("thanks, please enter the name of one of the volunteers.");
+	var a = prompt("please enter the name of one of the volunteers.");
+	if (a!=null) {
 			var b = prompt("please enter this volunteer's phone number");
 			var c = prompt("please enter this volunteer's street name.");
 
 			var set2 = {name: a, phone: b, street: c};
 
 			volunteerArrObj.push(set2)
-		}
+			
+			volunteerCount.push(a);
 
+
+			if (!confirm("would you like to enter another volunteer?")) {
+
+				y=false;
+			}
+	}
+	else {y=false}
+	
+}
+
+var finalAlertString = "The total number of victim(s) is " + victimsArrObj.length + ". ";
+
+for (var i=victimCount.length-1; i>=0; i--) {
+		
+		var victimInfo = "Victim " + victimsArrObj[i]['name'] + "'s phone number is " + victimsArrObj[i].phone + " and he/she lives on " + victimsArrObj[i].street + " street. ";
+		finalAlertString += victimInfo;
+};
+
+
+for (var i=volunteerCount.length-1; i>=0; i--) {
+		var volunteerInfo = "Volunteer " + volunteerArrObj[i].name + "'s phone number is " + volunteerArrObj[i].phone + " and he/she lives on " + volunteerArrObj[i].street + " street. ";
+		finalAlertString += volunteerInfo;
+};
+
+
+alert(finalAlertString);
+
+
+if (victimCount.length >0 && volunteerCount.length>0) {
+	
+	for (var i=victimCount.length-1; i>=0; i--) {
+		console.log(victimsArrObj[i].street)
+		for (var j=volunteerCount.length-1; j>=0; j--) {
+			console.log(volunteerArrObj[j].street)
+			if (victimsArrObj[i].street === volunteerArrObj[j].street) {
+				alert("Victim " + victimsArrObj[i].name + " and volunteer " + volunteerArrObj[j].name + " both live on " + victimsArrObj[i].street + ".");
+			}
+		} 
+		// if (victimsArrObj[i].street === volunteerArrObj[i].street) {
+		// 	alert("Victim " + victimsArrObj[i].name + " and volunteer " + volunteerArrObj[i].name + " both live on " + victimsArrObj[i].street + ".");
+		// }
 	}
 }
 
 
+else { alert("no matches, no volunteers")
+	// for (var i=volunteerCount.length-1; i>=0; i--) {
+	// 	if (victimsArrObj[i].street === volunteerArrObj[i].street) {
+	// 		alert("Victim " + victimsArrObj[i].name + " and volunteer " + volunteerArrObj[i].name + " both live on " + victimsArrObj[i].street + ".");
+	// 	}
+	// }
+}
 
-var finalAlertString = "The total number of victim(s) is " + victimsArrObj.length + ". ";
-console.log(finalAlertString);
-for (var i=victims-1; i>=0; i--) {
-		var victimInfo = "Victim " + victimsArrObj[i]['name'] + "'s phone number is " + victimsArrObj[i].phone + " and he/she lives on " + victimsArrObj[i].street + " street. ";
-		finalAlertString += victimInfo;
-};
-console.log(finalAlertString);
 
-for (var i=volunteers-1; i>=0; i--) {
-		console.log(volunteerArrObj[i])
-		var volunteerInfo = "Volunteer" + volunteerArrObj[i].name + "'s phone number is " + volunteerArrObj[i].phone + " and he/she lives on " + volunteerArrObj[i].street + " street. ";
-		finalAlertString += volunteerInfo;
-};
-console.log(finalAlertString);
 
-alert(finalAlertString);
+
+victimsArrObj[0].name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
